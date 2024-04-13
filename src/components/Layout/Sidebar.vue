@@ -5,7 +5,7 @@ import { ref } from 'vue'
 export interface ISidebarMenu {
   id: number
   title: string
-  icon?: string
+  icon: string
   children?: ISidebarMenu[]
   isCollapse?: boolean
 }
@@ -26,18 +26,22 @@ const dataTree = ref<ISidebarMenu[]>([
     children: [
       {
         id: 10,
+        icon: 'material-symbols-light:folder',
         title: 'BT_SGroup'
       },
       {
         id: 11,
+        icon: 'material-symbols-light:folder',
         title: 'OOP'
       },
       {
         id: 12,
+        icon: 'material-symbols-light:folder',
         title: 'CTDL'
       },
       {
         id: 13,
+        icon: 'material-symbols-light:folder',
         title: 'WorkDoc'
       },
     ]
@@ -79,7 +83,7 @@ const dataTree = ref<ISidebarMenu[]>([
     icon: 'ic:outline-cloud-queue',
   },
 ])
-const openItemId = ref<number>()
+const openItemId = ref<number>(0)
 
 function handleClickActiveItem(id: number) {
   activeItemId.value = id
@@ -87,7 +91,7 @@ function handleClickActiveItem(id: number) {
 
 function handleExpand(id: number) {
   if (openItemId.value === id)
-    openItemId.value = null;
+    openItemId.value = 0;
   else openItemId.value = id;
 }
 </script>
@@ -101,24 +105,24 @@ function handleExpand(id: number) {
     <div>
       <div v-for="(item, index) in dataTree" :key="item.id" @click="handleClickActiveItem(item.id)">
         <div
-          :class="[$style.sidebarItem, index % 3 === 0 && $style.sidebarItemSpace, item.id === activeItemId && $style.sidebarActiveItem]">
+          :class="[$style.sidebarItem, index % 3 === 0 ? $style.sidebarItemSpace : '', item.id === activeItemId ? $style.sidebarActiveItem : '']">
           <Icon @click="handleExpand(item.id)" :class="$style.sidebarItemCollapseIcon"
-            :icon="item.isCollapse ? item.id === openItemId ? 'material-symbols:arrow-drop-down-rounded' : 'material-symbols:arrow-right' : ''" />
-          <Icon :class="$style.sidebarItemIcon" :icon="item.icon" />
+            :icon="item.isCollapse && item.id === openItemId ? 'material-symbols:arrow-drop-down-rounded' : item.isCollapse ? 'material-symbols:arrow-right' : 'nothing'" />
+          <Icon :class="$style.sidebarItemIcon" :icon="item.icon || 'nothing'" />
           <span>{{ item.title }}</span>
         </div>
         <div :class="$style.sidebarChildren" v-show="item.children && item.id === openItemId">
           <div :class="$style.sidebarItem" v-for="subItem in item.children" :key="subItem.id">
             <Icon :class="$style.sidebarItemCollapseIcon"
-              :icon="subItem.isCollapse ? 'material-symbols:arrow-right' : ''" />
-            <Icon :class="$style.sidebarItemIcon" icon="material-symbols-light:folder" />
+              :icon="subItem.isCollapse ? 'material-symbols:arrow-right' : 'nothing'" />
+            <Icon :class="$style.sidebarItemIcon" :icon="subItem.icon" />
             <span>{{ item.title }}</span>
           </div>
         </div>
       </div>
     </div>
     <div :class="$style.sidebarData">
-      <el-progress :strokeWidth="4" style="width: 180px;" :percentage="dataUsed / 15 * 100" color="#F09D00" textInside="" />
+      <el-progress :stroke-width="4" style="width: 180px;" :percentage="dataUsed / 15 * 100" color="#F09D00" />
       <p>Đã sử dụng {{ dataUsed }} GB trong tổng số 15 GB</p>
     </div>
     <button :class="$style.sidebarBuyStorageButton">

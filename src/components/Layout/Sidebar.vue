@@ -107,14 +107,14 @@ function handleExpand(id: number) {
         <div
           :class="[$style.sidebarItem, index % 3 === 0 ? $style.sidebarItemSpace : '', item.id === activeItemId ? $style.sidebarActiveItem : '']">
           <Icon @click="handleExpand(item.id)" :class="$style.sidebarItemCollapseIcon"
-            :icon="item.isCollapse && item.id === openItemId ? 'material-symbols:arrow-drop-down-rounded' : item.isCollapse ? 'material-symbols:arrow-right' : 'nothing'" />
+            :icon="(item.isCollapse && item.id === openItemId) ? 'material-symbols:arrow-drop-down-rounded' : (item.isCollapse ? 'material-symbols:arrow-right' : 'nothing')" />
           <Icon :class="$style.sidebarItemIcon" :icon="item.icon || 'nothing'" />
           <span>{{ item.title }}</span>
         </div>
         <div :class="$style.sidebarChildren" v-show="item.children && item.id === openItemId">
           <div :class="$style.sidebarItem" v-for="subItem in item.children" :key="subItem.id">
             <Icon :class="$style.sidebarItemCollapseIcon"
-              :icon="subItem.isCollapse ? 'material-symbols:arrow-right' : 'nothing'" />
+              :icon="subItem.isCollapse && 'material-symbols:arrow-right'" />
             <Icon :class="$style.sidebarItemIcon" :icon="subItem.icon" />
             <span>{{ item.title }}</span>
           </div>

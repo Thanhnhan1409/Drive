@@ -79,7 +79,7 @@ const dataTree = ref<ISidebarMenu[]>([
     icon: 'ic:outline-cloud-queue',
   },
 ])
-const openItemId = ref<number>()
+const openItemId = ref<number>(0)
 
 function handleClickActiveItem(id: number) {
   activeItemId.value = id
@@ -87,7 +87,7 @@ function handleClickActiveItem(id: number) {
 
 function handleExpand(id: number) {
   if (openItemId.value === id)
-    openItemId.value = null;
+    openItemId.value = 0;
   else openItemId.value = id;
 }
 </script>
@@ -103,7 +103,7 @@ function handleExpand(id: number) {
         <div
           :class="[$style.sidebarItem, index % 3 === 0 && $style.sidebarItemSpace, item.id === activeItemId && $style.sidebarActiveItem]">
           <Icon @click="handleExpand(item.id)" :class="$style.sidebarItemCollapseIcon"
-            :icon="item.isCollapse ? item.id === openItemId ? 'material-symbols:arrow-drop-down-rounded' : 'material-symbols:arrow-right' : ''" />
+            :icon="item.isCollapse ? item.id === openItemId ? 'material-symbols:arrow-drop-down-rounded' : 'material-symbols:arrow-right' : 'none'" />
           <Icon :class="$style.sidebarItemIcon" :icon="item.icon" />
           <span>{{ item.title }}</span>
         </div>

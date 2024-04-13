@@ -107,7 +107,7 @@ function handleExpand(id: number) {
         <div
           :class="[$style.sidebarItem, index % 3 === 0 && $style.sidebarItemSpace, item.id === activeItemId && $style.sidebarActiveItem]">
           <Icon @click="handleExpand(item.id)" :class="$style.sidebarItemCollapseIcon"
-            :icon="item.isCollapse ? item.id === openItemId ? 'material-symbols:arrow-drop-down-rounded' : 'material-symbols:arrow-right' : 'nothing'" />
+            :icon="item.isCollapse && item.id === openItemId ? 'material-symbols:arrow-drop-down-rounded' : item.isCollapse ? 'material-symbols:arrow-right' : 'nothing'" />
           <Icon :class="$style.sidebarItemIcon" :icon="item.icon || 'nothing'" />
           <span>{{ item.title }}</span>
         </div>

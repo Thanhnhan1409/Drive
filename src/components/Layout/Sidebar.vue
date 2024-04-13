@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
+import { ref } from 'vue'
 
 export interface ISidebarMenu {
   id: number
@@ -117,7 +118,7 @@ function handleExpand(id: number) {
       </div>
     </div>
     <div :class="$style.sidebarData">
-      <el-progress :strokeWidth="4" style="width: 180px;" :percentage="dataUsed / 15 * 100" color="#F09D00" :textInside="''"/>
+      <el-progress :strokeWidth="4" style="width: 180px;" :percentage="dataUsed / 15 * 100" color="#F09D00" textInside="" />
       <p>Đã sử dụng {{ dataUsed }} GB trong tổng số 15 GB</p>
     </div>
     <button :class="$style.sidebarBuyStorageButton">
@@ -194,7 +195,7 @@ function handleExpand(id: number) {
 
 .sidebarData {
   padding: 5px 20px 0 16px;
-  
+
   p {
     font-size: 14px;
   }

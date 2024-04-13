@@ -5,7 +5,7 @@ import { ref } from 'vue'
 export interface ISidebarMenu {
   id: number
   title: string
-  icon?: string
+  icon: string
   children?: ISidebarMenu[]
   isCollapse?: boolean
 }
@@ -26,18 +26,22 @@ const dataTree = ref<ISidebarMenu[]>([
     children: [
       {
         id: 10,
+        icon: 'material-symbols-light:folder',
         title: 'BT_SGroup'
       },
       {
         id: 11,
+        icon: 'material-symbols-light:folder',
         title: 'OOP'
       },
       {
         id: 12,
+        icon: 'material-symbols-light:folder',
         title: 'CTDL'
       },
       {
         id: 13,
+        icon: 'material-symbols-light:folder',
         title: 'WorkDoc'
       },
     ]
@@ -111,7 +115,7 @@ function handleExpand(id: number) {
           <div :class="$style.sidebarItem" v-for="subItem in item.children" :key="subItem.id">
             <Icon :class="$style.sidebarItemCollapseIcon"
               :icon="subItem.isCollapse ? 'material-symbols:arrow-right' : 'nothing'" />
-            <Icon :class="$style.sidebarItemIcon" icon="material-symbols-light:folder" />
+            <Icon :class="$style.sidebarItemIcon" :icon="subItem.icon" />
             <span>{{ item.title }}</span>
           </div>
         </div>

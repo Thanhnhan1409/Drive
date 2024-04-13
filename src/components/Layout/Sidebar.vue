@@ -106,8 +106,8 @@ function handleExpand(id: number) {
       <div v-for="(item, index) in dataTree" :key="item.id" @click="handleClickActiveItem(item.id)">
         <div
           :class="[$style.sidebarItem, index % 3 === 0 ? $style.sidebarItemSpace : '', item.id === activeItemId ? $style.sidebarActiveItem : '']">
-          <!-- <Icon @click="handleExpand(item.id)" :class="$style.sidebarItemCollapseIcon"
-            :icon="item.isCollapse && item.id === openItemId ? 'material-symbols:arrow-drop-down-rounded' : item.isCollapse ? 'material-symbols:arrow-right' : 'nothing'" /> -->
+          <Icon @click="handleExpand(item.id)" :class="$style.sidebarItemCollapseIcon"
+            :icon="item.isCollapse && item.id === openItemId ? 'material-symbols:arrow-drop-down-rounded' : item.isCollapse ? 'material-symbols:arrow-right' : 'nothing'" />
           <Icon :class="$style.sidebarItemIcon" :icon="item.icon || 'nothing'" />
           <span>{{ item.title }}</span>
         </div>
@@ -122,7 +122,7 @@ function handleExpand(id: number) {
       </div>
     </div>
     <div :class="$style.sidebarData">
-      <el-progress :stroke-width="4" style="width: 180px;" :percentage="dataUsed / 15 * 100" color="#F09D00" textInside="" />
+      <!-- <el-progress :stroke-width="4" style="width: 180px;" :percentage="dataUsed / 15 * 100" color="#F09D00" textInside="" /> -->
       <p>Đã sử dụng {{ dataUsed }} GB trong tổng số 15 GB</p>
     </div>
     <button :class="$style.sidebarBuyStorageButton">

@@ -11,19 +11,19 @@ defineEmits<{
 }>()
 
 const form = reactive<{
-    type: number
-    ownerType: number
+    type?: number
+    ownerType?: number
     ownerEmail?: string
-    keyWord: string
-    folderName: string
-    address: number
-    addressDrive: number
-    editDateType: number
+    keyWord?: string
+    folderName?: string
+    address?: number
+    addressDrive?: number
+    editDateType?: number
     editStartDate?: string
     editEndDate?: string
-    requestApproval: boolean
-    shareUsers: string
-    trackItem: string
+    requestApproval?: boolean
+    shareUsers?: string
+    trackItem?: string
 }>({})
 const typeOptions = [
     {

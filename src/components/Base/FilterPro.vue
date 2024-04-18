@@ -11,7 +11,7 @@ defineEmits<{
 }>()
 
 const form = reactive<{
-    type?: number
+    type?: number | undefined
     ownerType?: number
     ownerEmail?: string
     keyWord?: string
@@ -214,7 +214,7 @@ const disablePopup = ref<boolean>(false)
                 </el-select>
             </el-form-item>
             <el-form-item label=" ">
-                <el-checkbox-group v-model="form.addressDrive">
+                <el-checkbox-group type="" v-model="form.addressDrive">
                     <el-checkbox v-for="item in addressDriveList" :value="item.id" :key="item.id" name="type">
                         {{ item.label }}
                     </el-checkbox>
@@ -226,7 +226,7 @@ const disablePopup = ref<boolean>(false)
                 </el-select>
             </el-form-item>
             <el-form-item label="Yêu cầu phê duyệt">
-                <el-checkbox-group v-model="form.type">
+                <el-checkbox-group type="" v-model="form.type">
                     <el-checkbox value="1" name="type">
                         Đang chờ tôi phê duyệt
                     </el-checkbox>

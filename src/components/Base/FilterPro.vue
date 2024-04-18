@@ -7,7 +7,7 @@ defineProps<{
 
 defineEmits<{
     (e: "closePopup"): void,
-    
+
 }>()
 
 const form = reactive<{
@@ -24,7 +24,10 @@ const form = reactive<{
     requestApproval?: boolean
     shareUsers?: string
     trackItem?: string
-}>({})
+}>({
+    type: 1,
+    addressDrive: 1
+})
 const typeOptions = [
     {
         id: 1,
@@ -183,7 +186,7 @@ const disablePopup = ref<boolean>(false)
 </script>
 
 <template>
-    <el-dialog  v-model="disablePopup" title="Shipping address" width="500" :class="$style.filterPropContainer">
+    <el-dialog v-model="disablePopup" title="Shipping address" width="500" :class="$style.filterPropContainer">
         <el-form :model="form">
             <el-form-item label="Loại">
                 <el-select v-model="form.type">
@@ -264,6 +267,7 @@ const disablePopup = ref<boolean>(false)
     padding: 24px;
     width: 725px;
 }
+
 .filterProFooter {
     display: flex;
     align-items: center;
@@ -275,19 +279,19 @@ const disablePopup = ref<boolean>(false)
     justify-content: flex-start;
     width: 150px;
     font-weight: 600;
-    color: rgb(60,64,67);
+    color: rgb(60, 64, 67);
 }
 
 :global(.el-select__wrapper) {
     height: 40px;
-    border: 1px solid rgb(60,64,67);
+    border: 1px solid rgb(60, 64, 67);
     box-shadow: none;
     width: 300px;
 }
 
 :globael(.el-input__inner) {
-    border: 1px solid rgb(60,64,67);
+    border: 1px solid rgb(60, 64, 67);
     box-shadow: none;
-    height: 40px; 
+    height: 40px;
 }
 </style>

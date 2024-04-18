@@ -9,11 +9,15 @@ const dialogFormVisible = ref<boolean>(false)
 function displayFilterPro() {
     dialogFormVisible.value = true
 }
+function closeFilter() {
+    dialogFormVisible.value = false
+}
+
 </script>
 
 <template>
     <div :class="$style.headerContainer">
-        <FilterPro :dialog-form-visible="dialogFormVisible" />
+        <FilterPro :dialog-form-visible="dialogFormVisible" @close-popup="closeFilter" />
         <div :class="$style.headerLeft">
             <div :class="$style.headerInfor">
                 <Icon :class="$style.headerLogo" icon="logos:google-drive" />
@@ -144,6 +148,7 @@ function displayFilterPro() {
     box-sizing: content-box;
     margin: 2px;
     border-radius: 50%;
+    cursor: pointer;
 
     &:hover {
         background-color: rgb(230, 233, 235);

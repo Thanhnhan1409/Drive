@@ -1,6 +1,7 @@
 
 <script lang="ts" setup>
 import { Icon } from '@iconify/vue'
+import { ref } from 'vue';
 
 const data = [
     {
@@ -160,7 +161,7 @@ const activeElement = ref<number>(0)
                         <el-dropdown-item command="e">Năm ngoái</el-dropdown-item>
                         <el-dropdown-item command="e">Năm ngoái</el-dropdown-item>
                         <el-dropdown-item command="e">Phạm vi tùy chỉnh</el-dropdown-item>
-                        <el-dropdown-item divided="" command="e">
+                        <el-dropdown-item divided command="e">
                             <button :class="$style.mydriveLastEditButton">Xóa tất cả</button>
                             <button :class="$style.mydriveLastEditButton">Hủy</button>
                             <button :class="$style.mydriveLastEditButton">Áp dụng</button>

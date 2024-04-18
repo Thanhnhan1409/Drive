@@ -122,8 +122,7 @@ function handleExpand(id: number) {
       </div>
     </div>
     <div :class="$style.sidebarData">
-      <el-progress :stroke-width="4" style="width: 180px;" :percentage="dataUsed / 15 * 100" color="#F09D00"
-        showText="false" text-inside="false" />
+      <el-progress :stroke-width="4" style="width: 180px;" :percentage="dataUsed / 15 * 100" color="#F09D00"/>
       <p>Đã sử dụng {{ dataUsed }} GB trong tổng số 15 GB</p>
     </div>
     <button :class="$style.sidebarBuyStorageButton">

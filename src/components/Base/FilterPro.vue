@@ -1,9 +1,15 @@
 <script setup lang="ts">
+import { reactive, ref } from 'vue';
 
 defineProps<{
     dialogFormVisible: boolean
 }>()
-const formLabelWidth = '140px'
+
+defineEmits<{
+    (e: "closePopup"): void,
+    
+}>()
+
 const form = reactive<{
     type: number
     ownerType: number
@@ -173,10 +179,11 @@ const trackItemOptions = [
         label: 'Chỉ những nhận xét được giao cho tôi'
     },
 ]
+const disablePopup = ref<boolean>(false)
 </script>
 
 <template>
-    <el-dialog v-show="dialogFormVisible" title="Shipping address" width="500" :class="$style.filterPropContainer">
+    <el-dialog  v-model="disablePopup" title="Shipping address" width="500" :class="$style.filterPropContainer">
         <el-form :model="form">
             <el-form-item label="Loại">
                 <el-select v-model="form.type">
@@ -241,8 +248,8 @@ const trackItemOptions = [
             <div :class="$style.filterProFooter">
                 <span>Tìm hiểu thêm</span>
                 <div class="dialog-footer">
-                    <el-button @click="dialogFormVisible = false">Cancel</el-button>
-                    <el-button type="primary" @click="dialogFormVisible = false">
+                    <el-button @click="$emit('closePopup')">Cancel</el-button>
+                    <el-button type="primary" @click="$emit('closePopup')">
                         Confirm
                     </el-button>
                 </div>

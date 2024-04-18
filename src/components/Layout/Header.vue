@@ -23,7 +23,7 @@ function displayFilterPro() {
                 <Icon :class="[$style.headerIcon, $style.headerLookIcon]" icon="material-symbols:search" />
                 <input v-model="searchValue" placeholder="Tìm trong Drive" :class="$style.headerInput" type="text">
                 <div :class="$style.headerSearchIconGroup">
-                    <Icon v-show="searchValue" :class="$style.headerIcon" icon="gravity-ui:xmark" />
+                    <Icon v-show="searchValue" @click="searchValue = ''" :class="$style.headerIcon" icon="gravity-ui:xmark" />
                     <img :class="$style.headerIcon" @click="displayFilterPro" src="../../assets/images/filter.png" alt="">
                 </div>
             </div>
@@ -50,16 +50,16 @@ function displayFilterPro() {
                     <li :class="$style.headerQuestionItem">Gửi ý kiến phản hồi cho Google</li>
                 </ul>
             </el-popover>
-            <el-dropdown trigger="click" placement="bottom-end" style="padding: 0;">
-                <Icon :class="$style.headerIcon" icon="material-symbols:settings-outline-rounded" />
-                <template #dropdown>
-                    <el-dropdown-menu :class="$style.headerSettingOptions">
-                        <el-dropdown-item :class="$style.headerSettingItem">Cài đặt</el-dropdown-item>
-                        <el-dropdown-item :class="$style.headerSettingItem">Tải Drive cho máy tính</el-dropdown-item>
-                        <el-dropdown-item :class="$style.headerSettingItem">Phím tắt</el-dropdown-item>
-                    </el-dropdown-menu>
+            <el-popover placement="bottom-end" :width="320" trigger="click">
+                <template #reference>
+                    <Icon :class="$style.headerIcon" icon="material-symbols:settings-outline-rounded" />
                 </template>
-            </el-dropdown>
+                <ul>
+                    <li :class="$style.headerSettingItem">Cài đặt</li>
+                    <li :class="$style.headerSettingItem">Tải Drive cho máy tính</li>
+                    <li :class="$style.headerSettingItem">Phím tắt</li>
+                </ul>
+            </el-popover>
             <Icon :class="$style.headerIcon" icon="material-symbols:apps" />
             <img :class="$style.headerAvt" src="../../assets/images/avt.jpg" alt="avatar">
         </div>
@@ -174,8 +174,11 @@ function displayFilterPro() {
     width: 300px;
 }
 
-.headerSettingItem:hover {
-    background-color: #e7e8e9;
+.headerSettingItem {
+    padding: 6px 30px;
+    &:hover {
+        background-color: #e7e8e9;
+    }
 }
 
 .headerQuestionItem {

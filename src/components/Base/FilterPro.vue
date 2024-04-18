@@ -3,7 +3,6 @@
 defineProps<{
     dialogFormVisible: boolean
 }>()
-const dialogFormVisible = ref<boolean>(true)
 const formLabelWidth = '140px'
 const form = reactive<{
     type: number
@@ -177,7 +176,7 @@ const trackItemOptions = [
 </script>
 
 <template>
-    <el-dialog v-model="dialogFormVisible" title="Shipping address" width="500" :class="$style.filterPropContainer">
+    <el-dialog v-show="dialogFormVisible" title="Shipping address" width="500" :class="$style.filterPropContainer">
         <el-form :model="form">
             <el-form-item label="Loại">
                 <el-select v-model="form.type">

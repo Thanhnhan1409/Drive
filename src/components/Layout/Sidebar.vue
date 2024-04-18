@@ -122,7 +122,7 @@ function handleExpand(id: number) {
       </div>
     </div>
     <div :class="$style.sidebarData">
-      <el-progress :stroke-width="4" style="width: 180px;" :percentage="dataUsed / 15 * 100" color="#F09D00" />
+      <el-progress :stroke-width="4" style="width: 180px;" :percentage="dataUsed / 15 * 100" color="#F09D00"/>
       <p>Đã sử dụng {{ dataUsed }} GB trong tổng số 15 GB</p>
     </div>
     <button :class="$style.sidebarBuyStorageButton">
@@ -136,7 +136,8 @@ function handleExpand(id: number) {
   padding: 8px 15px;
   background-color: #F8FAFD;
   width: 256px;
-  height: 91vh;
+  min-height: 91vh;
+  height: 100%;
 }
 
 .sidebarAddButton {
@@ -202,6 +203,7 @@ function handleExpand(id: number) {
 
   p {
     font-size: 14px;
+    margin-top: 12px;
   }
 }
 
@@ -214,6 +216,7 @@ function handleExpand(id: number) {
   background-color: #F8FAFD;
   margin-left: 15px;
   width: 165px;
+  margin-top: 12px;
   cursor: pointer;
 
   &:hover {

@@ -4,14 +4,22 @@
 
 <template>
   <el-container>
-    <el-header style="padding: 0;"><Header /></el-header>
+    <el-header style="padding: 0;">
+      <Header />
+    </el-header>
     <el-container>
-      <el-aside>
+      <div :class="$style.layoutSidebar">
         <Sidebar />
-      </el-aside>
-      <el-main>
+      </div>
+      <el-main :class="$style.layoutMain">
         <RouterView />
       </el-main>
     </el-container>
   </el-container>
-  </template>
+</template>
+
+<style module lang="scss">
+.layoutMain {
+  border-radius: 16px;
+}
+</style>

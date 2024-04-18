@@ -2,11 +2,22 @@
 import { Icon } from '@iconify/vue'
 import { ref } from 'vue'
 
+
 const searchValue = ref<string>('')
+const valueSwitch = ref<boolean>(false)
+const dialogFormVisible = ref<boolean>(false)
+function displayFilterPro() {
+    dialogFormVisible.value = true
+}
+function closeFilter() {
+    dialogFormVisible.value = false
+}
+
 </script>
 
 <template>
     <div :class="$style.headerContainer">
+        <FilterPro :dialog-form-visible="dialogFormVisible" @close-popup="closeFilter" />
         <div :class="$style.headerLeft">
             <div :class="$style.headerInfor">
                 <Icon :class="$style.headerLogo" icon="logos:google-drive" />
@@ -16,17 +27,43 @@ const searchValue = ref<string>('')
                 <Icon :class="[$style.headerIcon, $style.headerLookIcon]" icon="material-symbols:search" />
                 <input v-model="searchValue" placeholder="Tìm trong Drive" :class="$style.headerInput" type="text">
                 <div :class="$style.headerSearchIconGroup">
-                    <Icon v-show="searchValue" :class="$style.headerIcon" icon="gravity-ui:xmark" />
-                    <img :class="$style.headerIcon" src="../../assets/images/filter.png" alt="">
-                    <!-- <Icon icon="material-symbols:filter-alt-outline" /> -->
+                    <Icon v-show="searchValue" @click="searchValue = ''" :class="$style.headerIcon" icon="gravity-ui:xmark" />
+                    <img :class="$style.headerIcon" @click="displayFilterPro" src="../../assets/images/filter.png" alt="">
                 </div>
             </div>
         </div>
 
         <div :class="$style.headerRight">
-            <Icon :class="$style.headerIcon" icon="teenyicons:tick-circle-outline" />
-            <Icon :class="$style.headerIcon" icon="ant-design:question-circle-outlined" />
-            <Icon :class="$style.headerIcon" icon="material-symbols:settings-outline-rounded" />
+            <el-popover placement="bottom-end" :width="300" trigger="click">
+                <template #reference>
+                    <Icon :class="$style.headerIcon" icon="teenyicons:tick-circle-outline" />
+                </template>
+                <span :class="$style.headerTickContent">Xem trước khi không có mạng</span>
+                <el-switch v-model="valueSwitch" size="small" />
+            </el-popover>
+            <el-popover placement="bottom-end" :width="280" trigger="click">
+                <template #reference>
+                    <Icon :class="$style.headerIcon" icon="ant-design:question-circle-outlined" />
+                </template>
+                <ul>
+                    <li :class="$style.headerQuestionItem">Trợ giúp</li>
+                    <li :class="$style.headerQuestionItem">Đào tạo</li>
+                    <el-divider />
+                    <li :class="$style.headerQuestionItem">Điều khoản và chính sách</li>
+                    <el-divider />
+                    <li :class="$style.headerQuestionItem">Gửi ý kiến phản hồi cho Google</li>
+                </ul>
+            </el-popover>
+            <el-popover placement="bottom-end" :width="320" trigger="click">
+                <template #reference>
+                    <Icon :class="$style.headerIcon" icon="material-symbols:settings-outline-rounded" />
+                </template>
+                <ul>
+                    <li :class="$style.headerSettingItem">Cài đặt</li>
+                    <li :class="$style.headerSettingItem">Tải Drive cho máy tính</li>
+                    <li :class="$style.headerSettingItem">Phím tắt</li>
+                </ul>
+            </el-popover>
             <Icon :class="$style.headerIcon" icon="material-symbols:apps" />
             <img :class="$style.headerAvt" src="../../assets/images/avt.jpg" alt="avatar">
         </div>
@@ -111,6 +148,7 @@ const searchValue = ref<string>('')
     box-sizing: content-box;
     margin: 2px;
     border-radius: 50%;
+    cursor: pointer;
 
     &:hover {
         background-color: rgb(230, 233, 235);
@@ -135,5 +173,46 @@ const searchValue = ref<string>('')
     &:hover {
         background-color: #e7e8e9;
     }
+}
+
+.headerSettingOptions {
+    width: 300px;
+}
+
+.headerSettingItem {
+    padding: 6px 30px;
+    &:hover {
+        background-color: #e7e8e9;
+    }
+}
+
+.headerQuestionItem {
+    width: 260px;
+    list-style: none;
+    cursor: pointer;
+    display: block;
+    color: #202124;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: .2px;
+    line-height: 20px;
+    outline: none;
+    padding: 6px 10px;
+
+    &:hover {
+        background-color: #E7E8EB;
+    }
+}
+
+:global(.el-popover.el-popper) {
+    padding: 6px 0;
+}
+
+:global(.el-divider--horizontal) {
+    margin: 7px 0;
+}
+
+.headerTickContent {
+    padding: 6px 30px;
 }
 </style>
